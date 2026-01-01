@@ -1,0 +1,35 @@
+nanochat_base_dir: ${NANOCHAT_BASE_DIR}
+
+stages:
+  mid:
+    out_dir: ${nanochat_base_dir}/mid_data
+    out_file: jp_mid.jsonl
+    inputs:
+      - type: hf
+        name: llm-jp/oasst2-33k-ja
+        system_prompt: ""
+        config: v1.0
+        split: train
+        streaming: true
+        max_rows: 0
+        mapping:
+          messages_field: conversations
+      - type: hf
+        name: llm-jp/oasst1-21k-ja
+        system_prompt: ""
+        config: v1.0
+        split: train
+        streaming: true
+        max_rows: 0
+        mapping:
+          messages_field: conversations
+      - type: hf
+        name: llm-jp/magpie-sft-v1.0
+        system_prompt: ""
+        config: v1.0
+        split: train
+        streaming: true
+        max_rows: 0
+        mapping:
+          messages_field: conversations
+

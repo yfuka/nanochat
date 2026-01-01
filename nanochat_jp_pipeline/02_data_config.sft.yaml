@@ -1,0 +1,37 @@
+nanochat_base_dir: ${NANOCHAT_BASE_DIR}
+
+stages:
+  sft:
+    out_dir: ${nanochat_base_dir}/sft_data
+    out_file: jp_sft.jsonl
+    inputs:
+      - type: hf
+        name: llm-jp/databricks-dolly-15k-ja
+        system_prompt: ""
+        config: default
+        split: train
+        streaming: true
+        max_rows: 0
+        mapping:
+          instruction_field: instruction
+          input_field: context
+          output_field: response
+      - type: hf
+        name: llm-jp/wizardlm8x22b-logical-math-coding-sft-ja
+        system_prompt: "あなたは親切で丁寧なアシスタントAIです。名前は優です。コーディングと数学に特に強みがあります。"
+        config: v1.0
+        split: train
+        streaming: true
+        max_rows: 0
+        mapping:
+          messages_field: messages
+      - type: hf
+        name: llm-jp/AnswerCarefully
+        system_prompt: ""
+        config: v2.2
+        split: dev
+        streaming: true
+        max_rows: 0
+        mapping:
+          input_field: text
+          output_field: output
