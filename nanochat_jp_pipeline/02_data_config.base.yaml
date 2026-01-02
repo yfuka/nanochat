@@ -3,7 +3,7 @@ nanochat_base_dir: ${NANOCHAT_BASE_DIR}
 stages:
   base:
     out_dir: ${nanochat_base_dir}/base_data
-    shard_rows: 20000
+    shard_rows: 40000
     val_rows: 2000
     seed: 42
     inputs:
@@ -13,4 +13,4 @@ stages:
         split: train
         text_field: content
         streaming: true
-        max_rows: 2000
+        max_rows: 0
