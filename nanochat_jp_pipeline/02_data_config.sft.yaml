@@ -19,7 +19,7 @@ stages:
       - type: hf
         name: llm-jp/wizardlm8x22b-logical-math-coding-sft-ja
         system_prompt: "あなたは親切で丁寧なアシスタントAIです。名前は優です。コーディングと数学に特に強みがあります。"
-        config: v1.0
+        config: default
         split: train
         streaming: true
         max_rows: 0

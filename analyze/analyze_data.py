@@ -58,7 +58,7 @@ def parse_args() -> argparse.Namespace:
     """
     ap = argparse.ArgumentParser()
     ap.add_argument("--base-dir", required=True, help="NANOCHAT_BASE_DIR (e.g. /data/.cache/nanochat)")
-    ap.add_argument("--sample-rows", type=int, default=20000, help="sample rows for text length stats")
+    ap.add_argument("--sample-rows", type=int, default=40000, help="sample rows for text length stats")
     ap.add_argument(
         "--tokenizer-mode",
         choices=["none", "sample", "full"],

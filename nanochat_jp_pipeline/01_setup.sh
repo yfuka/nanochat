@@ -21,15 +21,13 @@ fi
 
 uv venv
 uv sync --extra gpu
-# 追加で必要
-uv add hf_transfer
 # ---------------------------------------------
 
 # --- Rust toolchain for maturin (persist on /workspace) ---
 if ! command -v rustc >/dev/null 2>&1; then
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-  source "$HOME/.cargo/env"
 fi
+source "$HOME/.cargo/env"
 # ---------------------------------------------
 
 # Rust tokenizer をビルド（nanochat README/解説で一般的な手順）

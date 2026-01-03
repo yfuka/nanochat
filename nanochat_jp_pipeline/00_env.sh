@@ -10,22 +10,25 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 export PIPE_DIR="${PIPE_DIR:-$SCRIPT_DIR}"
 
 # 3) 超小さいモデルから（まずE2E確認）
-export MODEL_TAG=jp_d8
-export NPROC_PER_NODE=1
+export MODEL_TAG="d8"
+export NPROC_PER_NODE=8
 export WANDB_RUN=dummy
 
 # 4) Hugging Face の保存先（あなたのアカウント名に合わせて変更）
-export HF_TOKEN="${HF_TOKEN:-<your_token>}"
-export HF_NAMESPACE="${HF_NAMESPACE:-<your_hf_username>}"
+export HF_TOKEN="${HF_TOKEN:-<YOUR_HF_TOKEN>}"
+export HF_NAMESPACE="${HF_NAMESPACE:-<YOUR_HF_USERNAME>}"
 export HF_REPO_PREFIX="${HF_REPO_PREFIX:-nanochat-jp}"
 
-export HF_REPO_TOKENIZER="${HF_NAMESPACE}/${HF_REPO_PREFIX}-${MODEL_TAG}-tokenizer}"
-export HF_REPO_DATA="${HF_NAMESPACE}/${HF_REPO_PREFIX}-${MODEL_TAG}-data}"
-export HF_REPO_BASE="${HF_NAMESPACE}/${HF_REPO_PREFIX}-${MODEL_TAG}-base}"
-export HF_REPO_MID="${HF_NAMESPACE}/${HF_REPO_PREFIX}-${MODEL_TAG}-mid}"
-export HF_REPO_SFT="${HF_NAMESPACE}/${HF_REPO_PREFIX}-${MODEL_TAG}-sft}"
+export HF_REPO_TOKENIZER="${HF_NAMESPACE}/${HF_REPO_PREFIX}-tokenizer"
+export HF_REPO_DATA="${HF_NAMESPACE}/${HF_REPO_PREFIX}-${MODEL_TAG}-data"
+export HF_REPO_BASE="${HF_NAMESPACE}/${HF_REPO_PREFIX}-${MODEL_TAG}-base"
+export HF_REPO_MID="${HF_NAMESPACE}/${HF_REPO_PREFIX}-${MODEL_TAG}-mid"
+export HF_REPO_SFT="${HF_NAMESPACE}/${HF_REPO_PREFIX}-${MODEL_TAG}-sft"
 
 # 5) データ
 # ---- tokenizer ----
-export TOK_MAX_CHARS="${TOK_MAX_CHARS:-200000000}"  # まず小さく
+export TOK_MAX_CHARS="${TOK_MAX_CHARS:-400000000}"
 export SEED="${SEED:-42}"
+
+# 6) 学習
+export OMP_NUM_THREADS=1
